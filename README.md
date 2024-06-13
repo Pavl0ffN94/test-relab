@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Создание проекта на Vue.js или React
+Разверните приложение на Vue.js через vue-cli или React RTK, подключите одну из UI
+библиотек на свой выбор. В нашей фирме наиболее часто используемая - element ui.
+Если проект будет реализован на nuxt.js или next.js - это будет плюс.
+Необходимо создать приложение, состоящее из нескольких страниц. Первая - по адресу
+/login. На странице логина располагается форма авторизации. Форма состоит из двух
+полей - email и пароль.
+Валидация полей:
+·
+Email - проверка на корректный email адрес
+·
+Пароль - минимум 8 символов, обрезка пробелов, минимум одна заглавная буква
+По нажатию на кнопку авторизации проверить валидность полей, в случае валидности
+имитировать запрос на сервер (2 секунды), форму заблокировать, обозначить на форме
+что идет загрузка, после двух секунд перейти на главную страницу по адресу ‘/’
+Главная страница:
+Сделайте шапку с двумя пунктами меню - Главная страница и ссылка на страницу логина.
+В теле главной страницы 2 колонки - первая список пользователей с пагинацией. Вторая -
+список событий.
+Список пользователей выводить по 5 записей, под таблицей постраничная пагинация.
+Запрос на получение списка пользователей: GET https://test.dev-relabs.ru/api/users/list
+Параметры: limit - количество выводимых записей на странице (выводим по 5), offset -
+смещение запроса поиска, Для первой страницы 0, для 2й - 0 + limit и т.д.
+Ответ:
+{
+total: number,
+per_page: number,
+page: number,
+limit: number,
+offset: number,
+items: Array<UserItem>
+}
+UserItem: {
+id: number,
+name: string,
+role: string,
+ctime: unix timestamp
+}
+В таблице списка пользователей вывести все 4 колонки полей пользователя и пятую
+колонку с действиями. Ctime - время создания пользователя, отобразить в формате
+“DD.MM.YYYY HH:mm”. Действие в последней колонке одно - удаление пользователя.
+Здесь запрос делать не надо, просто удалите эту запись из таблицы на фронте.
+Во время загрузки данных в таблице показать загрузчик
+Во второй колонке отобразить список событий. События приходят через вебсокет. Адрес
+подключения - wss://test.dev-relabs.ru/event.
+События генерируются раз в несколько секунд. При получении события это событие
+нужно добавить в список событий и отобразить в колонке, можно в виде таблицы. Поля -
+ctime, event. Время отобразить в формате DD.MM.YYYY HH:mm
