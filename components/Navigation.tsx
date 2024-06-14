@@ -11,6 +11,9 @@ export const Navigation = () => {
         <Tab>
           <Link href='/login'>Войти</Link>
         </Tab>
+        <Tab>
+          <Link href='/shop'>Магазин</Link>
+        </Tab>
       </TabList>
       <TabIndicator mt='-1.5px' height='2px' bg='blue.500' borderRadius='3px' />
     </Tabs>

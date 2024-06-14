@@ -1,12 +1,13 @@
 'use client';
-import {formatDateTime} from '@/helpers/formattingDate';
+
+import {formatDateTime} from '@/helpers';
 import {Box, List, ListItem, Text, VStack} from '@chakra-ui/react';
 import {useEffect, useState} from 'react';
 
-type IEvent = {
+interface IEvent {
   ctime: number;
   event: string;
-};
+}
 
 export const EventList = () => {
   const [events, setEvents] = useState<IEvent[]>([]);
@@ -37,23 +38,21 @@ export const EventList = () => {
   }, []);
 
   return (
-    <Box w='100%' padding='1rem' h='100%' overflowY='auto'>
+    <Box w='100%' padding={2} h='80%' overflowY='auto'>
       <List spacing={3}>
-        {events.map(
-          (data): IEvent => (
-            <ListItem
-              display='flex'
-              flexDir='row'
-              justifyContent='space-between'
-              gap={5}
-              borderBottom='1px solid grey'
-              key={data.event}
-              padding='0.5rem'>
-              <Text> {formatDateTime(data.ctime)}</Text>
-              <Text>{data.event}</Text>
-            </ListItem>
-          ),
-        )}
+        {events.map(data => (
+          <ListItem
+            display='flex'
+            flexDir='row'
+            justifyContent='space-between'
+            gap={5}
+            borderBottom='1px solid grey'
+            key={data.event}
+            padding='0.5rem'>
+            <Text> {formatDateTime(data.ctime)}</Text>
+            <Text>{data.event}</Text>
+          </ListItem>
+        ))}
       </List>
     </Box>
   );

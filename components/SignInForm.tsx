@@ -2,13 +2,12 @@
 
 import {useState} from 'react';
 import {useRouter} from 'next/navigation';
-import {Input, Button, Box} from '@chakra-ui/react';
-import {ModalError} from '../modalError';
-import Link from 'next/link';
+import {Input, Button, Box, Spinner} from '@chakra-ui/react';
 import {useForm} from 'react-hook-form';
 import {ErrorPopover} from './ErrorPopover';
+import {SignInFormData} from '@/types';
 
-export const SignInForm = () => {
+export const SignInForm: React.FC = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -16,16 +15,18 @@ export const SignInForm = () => {
     register,
     setValue,
     handleSubmit,
+    getValues,
     formState: {errors, isSubmitting},
   } = useForm({
     mode: 'onBlur',
   });
 
-  const onSubmit = async data => {
-    data.password = data.password.replace(/\s+/g, '');
+  const onSubmit = async () => {
+    const {email, password} = getValues();
+    const gapCleaning = password.replace(/\s+/g, '');
     setLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 2000)); // Имитация запроса
-    console.log(data);
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    console.log(email, gapCleaning);
     setLoading(false);
     router.push('/');
   };
@@ -101,7 +102,7 @@ export const SignInForm = () => {
             padding='1rem'>
             Войти
           </Button>
-          {loading && <div className='loader'>Loading...</div>}
+          {loading && <Spinner />}
         </Box>
       </form>
     </>
