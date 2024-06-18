@@ -35,13 +35,27 @@ const PageButtonsImpl: React.FC<PageButtonsProps> = ({page, totalPages, setPage}
     return buttons;
   };
 
+  console.log(page);
+
   return (
     <HStack spacing={2}>
-      <Button onClick={handlePreviousPage} disabled={page === 1}>
+      <Button
+        onClick={handlePreviousPage}
+        _hover={{}}
+        _disabled={{opacity: 0.9, cursor: 'not-allowed', bg: 'gray'}}
+        disabled={page === 1}
+        bg={page === 1 ? 'grey' : 'blue.500'}
+        color={page === 1 ? '#fff' : 'white'}>
         Предыдущая
       </Button>
       {renderPageButtons()}
-      <Button onClick={handleNextPage} disabled={page === totalPages}>
+      <Button
+        onClick={handleNextPage}
+        _hover={{}}
+        _disabled={{opacity: 0.9, cursor: 'not-allowed', bg: 'gray'}}
+        disabled={page === totalPages}
+        bg={page === totalPages ? 'grey' : 'blue.500'}
+        color={page === totalPages ? '#fff' : 'white'}>
         Следующая
       </Button>
     </HStack>

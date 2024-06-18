@@ -22,21 +22,26 @@ import {HeartIcon} from './HeartIcon';
 
 export const PriceCard: React.FC = () => {
   return (
-    <Card w='md' p={2}>
+    <Card title='Быстрый просмотр' w='xs' p={2}>
       <CardBody display='flex' flexDir='column' gap={2}>
         <Box pos='relative' width='100%' h='50%'>
           <Image
-            src='https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-card-40-iphone15prohero-202309_FMT_WHH?wid=508&hei=472&fmt=p-jpg&qlt=95&.v=1693086369818'
+            objectFit='fill'
+            src='https://sohocase.ru/image/catalog/Xioami/iphone/iphone12promax.jpg'
             alt='Green double couch with wooden legs'
             borderRadius='lg'
           />
           <Tag
             pos='absolute'
-            left={4}
-            bottom={0}
-            borderRadius={8}
-            size='md'
-            bg='#d974748a'
+            left='0%'
+            bottom='-5%'
+            borderRadius={12}
+            size='xs'
+            fontSize='.8rem'
+            bg='#d991d38a'
+            w='17%'
+            textAlign='center '
+            p={1}
             color='#e92626b3'>
             -14%
           </Tag>

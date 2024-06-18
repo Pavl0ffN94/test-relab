@@ -21,12 +21,29 @@ export const SignInForm: React.FC = () => {
     mode: 'onBlur',
   });
 
+  const transformPassword = value => {
+    return value.trim().replace(/\s+/g, '');
+  };
+
+  const validatePassword = value => {
+    if (/\s/g.test(value)) {
+      return 'Не должно содержать пробелов между символами';
+    }
+    if (value.length < 8) {
+      return 'Не менее 8 символов';
+    }
+    if (!/(?=.*[A-Z])/.test(value)) {
+      return 'Должна присутствовать одна заглавная латинская буква';
+    }
+    return true;
+  };
+
   const onSubmit = async () => {
     const {email, password} = getValues();
-    const gapCleaning = password.replace(/\s+/g, '');
+    const gapCleaning = password.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
     setLoading(true);
     await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log(email, gapCleaning);
+    console.log('Password:', `'${password}'`);
     setLoading(false);
     router.push('/');
   };
@@ -77,14 +94,8 @@ export const SignInForm: React.FC = () => {
             isRequired={true}
             {...register('password', {
               required: 'Поле обязательно',
-              minLength: {
-                value: 8,
-                message: 'Не менее 8 символов',
-              },
-              pattern: {
-                value: /(?=.*[A-Z])/,
-                message: 'Должна присутствовать одна заглавная латинская буква',
-              },
+              transform: transformPassword,
+              validate: validatePassword,
             })}
           />
           {errors?.password && errors.password.message && (
