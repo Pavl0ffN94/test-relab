@@ -40,7 +40,6 @@ export const PriceCard: React.FC = () => {
             fontSize='.8rem'
             bg='#d991d38a'
             w='17%'
-            textAlign='center '
             p={1}
             color='#e92626b3'>
             -14%

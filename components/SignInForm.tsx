@@ -21,11 +21,8 @@ export const SignInForm: React.FC = () => {
     mode: 'onBlur',
   });
 
-  const transformPassword = value => {
-    return value.trim().replace(/\s+/g, '');
-  };
-
-  const validatePassword = value => {
+  const validatePassword = (value: string) => {
+    value.trim().replace(/\s+/g, '');
     if (/\s/g.test(value)) {
       return 'Не должно содержать пробелов между символами';
     }
@@ -94,7 +91,6 @@ export const SignInForm: React.FC = () => {
             isRequired={true}
             {...register('password', {
               required: 'Поле обязательно',
-              transform: transformPassword,
               validate: validatePassword,
             })}
           />

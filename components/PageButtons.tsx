@@ -35,8 +35,6 @@ const PageButtonsImpl: React.FC<PageButtonsProps> = ({page, totalPages, setPage}
     return buttons;
   };
 
-  console.log(page);
-
   return (
     <HStack spacing={2}>
       <Button
