@@ -1,11 +1,8 @@
 import {
   Box,
   Button,
-  ButtonGroup,
   Card,
   CardBody,
-  CardFooter,
-  Divider,
   Heading,
   Stack,
   Image,
@@ -22,9 +19,9 @@ import {HeartIcon} from './HeartIcon';
 
 export const PriceCard: React.FC = () => {
   return (
-    <Card title='Быстрый просмотр' w='xs' p={2}>
+    <Card w='xs' p={2} pos='relative'>
       <CardBody display='flex' flexDir='column' gap={2}>
-        <Box pos='relative' width='100%' h='50%'>
+        <Box pos='relative' width='100%' h='50%' _hover={{'& .quick-view': {opacity: 1}}}>
           <Image
             objectFit='fill'
             src='https://sohocase.ru/image/catalog/Xioami/iphone/iphone12promax.jpg'
@@ -34,7 +31,7 @@ export const PriceCard: React.FC = () => {
           <Tag
             pos='absolute'
             left='0%'
-            bottom='-5%'
+            bottom='-7%'
             borderRadius={12}
             size='xs'
             fontSize='.8rem'
@@ -44,6 +41,25 @@ export const PriceCard: React.FC = () => {
             color='#e92626b3'>
             -14%
           </Tag>
+          <Box
+            className='quick-view'
+            pos='absolute'
+            top='50%'
+            left='50%'
+            w='70%'
+            h='15%'
+            p={2}
+            transform='translate(-50%, -50%)'
+            bg='rgb(255 246 246 / 72%)'
+            color='#000'
+            borderRadius='3xl'
+            opacity={0}
+            display='flex'
+            alignItems='center'
+            justifyContent='center'
+            transition='opacity 0.3s'>
+            <Text> Быстрый просмотр </Text>
+          </Box>
         </Box>
         <Stack mt='6' spacing='3'>
           <HStack>
@@ -63,10 +79,10 @@ export const PriceCard: React.FC = () => {
         <StarsSlider />
         <Box
           p={2}
-          w='50%'
+          w='70%'
           borderRadius={25}
           fontSize='lg'
-          fontWeight='600'
+          fontWeight='500'
           color='#271a1a'
           bg='linear-gradient(90deg, rgba(15,180,62,0.7791491596638656) 6%, rgba(224,255,0,1) 100%)'>
           РАССРОЧКА 0-0-6
